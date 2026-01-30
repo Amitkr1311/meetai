@@ -104,11 +104,11 @@ export const SignUpView = () => {
                         name="name"
                         render={({field}) => (
                           <FormItem>
-                            <FormLabel>Username</FormLabel>
+                            <FormLabel>Name</FormLabel>
                             <FormControl>
                               <Input 
                                 type="text"
-                                placeholder="Your username"
+                                placeholder="John Doe"
                                 {...field}
                               />
                             </FormControl>
@@ -127,7 +127,7 @@ export const SignUpView = () => {
                             <FormControl>
                               <Input 
                                 type="email"
-                                placeholder="m@example.com"
+                                placeholder="example@meetai.com"
                                 {...field}
                               />
                             </FormControl>
@@ -201,7 +201,7 @@ export const SignUpView = () => {
                     className="w-full cursor-pointer"
                     disabled={pending}
                   >
-                    <Google className="mr-2 h-4 w-4" /> Google
+                    <Google className="mr-2 h-4 w-4" aria-hidden="true" /> Google
                   </Button>
                   <Button
                     disabled={pending}
@@ -210,7 +210,7 @@ export const SignUpView = () => {
                     type="button"
                     className="w-full cursor-pointer"
                   >
-                    <FaGithub /> Github
+                    <FaGithub className="mr-2 h-4 w-4" aria-hidden="true" /> Github
                   </Button>
                 </div>
                 <div className="text-center text-sm">

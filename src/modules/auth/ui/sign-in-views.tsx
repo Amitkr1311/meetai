@@ -155,7 +155,7 @@ export const SignInView = () => {
                     className="w-full cursor-pointer"
                     disabled={pending}
                   >
-                    <Google className="mr-2 h-4 w-4" /> Google
+                    <Google className="mr-2 h-4 w-4" aria-hidden="true" /> Google
                   </Button>
                   <Button
                     disabled={pending}
@@ -164,7 +164,7 @@ export const SignInView = () => {
                     type="button"
                     className="w-full cursor-pointer"
                   >
-                    <FaGithub /> Github
+                  <FaGithub className="mr-2 h-4 w-4" aria-hidden="true" /> Github
                   </Button>
                 </div>
                 <div className="text-center text-sm">
