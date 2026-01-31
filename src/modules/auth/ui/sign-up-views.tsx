@@ -201,7 +201,7 @@ export const SignUpView = () => {
                     className="w-full cursor-pointer"
                     disabled={pending}
                   >
-                    <Google className="mr-2 h-4 w-4" aria-hidden="true" /> Google
+                    <Google className="mr-2 h-4 w-4" /> Google
                   </Button>
                   <Button
                     disabled={pending}
