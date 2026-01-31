@@ -1,12 +1,12 @@
 "use client";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import { set, z } from "zod";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {OctagonAlertIcon} from "lucide-react";
+import {FaGithub} from "react-icons/fa";
 
 import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertTitle } from "@/components/ui/alert";
@@ -15,6 +15,8 @@ import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/navigation";
+import { Google } from "@/components/icons/google";
 
 const signInFormSchema = z.object({
   email: z.string().email(),
@@ -53,6 +55,25 @@ export const SignInView = () => {
       }
     );
   }
+
+  const onSocial = (providers: "Google" | "Github") => {
+      setError(null);
+      setPending(true);
+  
+        authClient.signIn.social({
+          provider: providers.toLowerCase() as "google" | "github",
+          callbackURL: "/",
+        },{
+          onSuccess: () => {
+            setPending(false);
+          },
+          onError: ({ error }) => {
+            setError(error.message);
+            setPending(false);
+          } 
+        }
+      );
+    }
 
   return (
     <div className="flex flex-col gap-6 w-full">
@@ -128,20 +149,22 @@ export const SignInView = () => {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <Button
+                    onClick={()=> {onSocial("Google")}}
                     variant="outline"
                     type="button"
                     className="w-full cursor-pointer"
                     disabled={pending}
                   >
-                    Google
+                    <Google className="mr-2 h-4 w-4" /> Google
                   </Button>
                   <Button
                     disabled={pending}
+                    onClick={()=> {onSocial("Github")}}
                     variant="outline"
                     type="button"
                     className="w-full cursor-pointer"
                   >
-                    Github
+                  <FaGithub className="mr-2 h-4 w-4" aria-hidden="true" /> Github
                   </Button>
                 </div>
                 <div className="text-center text-sm">
