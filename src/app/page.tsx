@@ -11,7 +11,7 @@ const page = async () => {
   if(!session){
     redirect("/sign-in");
   }
-  console.log("Session in home page:", session);
+  
   return (
     <div>
       <HomeView />
