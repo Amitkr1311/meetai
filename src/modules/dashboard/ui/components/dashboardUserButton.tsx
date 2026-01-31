@@ -9,7 +9,7 @@ import {
     DropdownMenuTrigger
 
 } from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { GeneratedAvatar } from "@/components/avatar/generated-avatar";
 import { ChevronDownIcon, CreditCardIcon, LogOutIcon } from "lucide-react";
 
@@ -35,12 +35,15 @@ import { ChevronDownIcon, CreditCardIcon, LogOutIcon } from "lucide-react";
             <DropdownMenuTrigger className="rounded-lg border-border/10 p-3 w-full flex
             items-center justify-between bg-white/5 hover:bg-white/10 overflow-hidden">
                 {data.user.image ? (
-                    <Avatar>
-                        <AvatarImage src={data.user.image} />
-                    </Avatar>
-                ): (
+                     <Avatar>
+                         <AvatarImage src={data.user.image} />
+                        <AvatarFallback>
+                            {data.user.name?.charAt(0)?.toUpperCase() || "?"}
+                        </AvatarFallback>
+                     </Avatar>
+                 ): (
                     <GeneratedAvatar 
-                        seed={data.user.name}
+                        seed={data.user.name || data.user.email || "User"}
                         variant="initials"
                         className="size-9 mr-3"
                     />
